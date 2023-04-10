@@ -1,1 +1,49 @@
 SQL
+
+use KazNTUDataBase
+
+drop table orders
+
+CREATE TABLE Orders (
+  Id INT IDENTITY(1,1) PRIMARY KEY,
+  OrderDate DATETIME NOT NULL,
+  RegionId INT NOT NULL,
+  ItemId INT NOT NULL,
+  Amount INT NOT NULL,
+  FOREIGN KEY (RegionId) REFERENCES Regions(id),
+  FOREIGN KEY (ItemId) REFERENCES Items(id)
+);
+
+use KazNTUDataBase
+
+drop table items
+
+CREATE TABLE Items (
+  Id INT IDENTITY(1,1) PRIMARY KEY,
+  Name VARCHAR(50) NOT NULL,
+  Price DECIMAL(10,2) NOT NULL
+);
+
+Use KazNTUDataBase
+
+Drop Table Regions
+
+CREATE TABLE Regions (
+  Id INT IDENTITY(1,1) PRIMARY KEY,
+  Name VARCHAR(50) NOT NULL,
+  ParentId INT,
+  FOREIGN KEY (ParentId) REFERENCES Regions(id)
+);
+
+Use KazNTUDataBase
+
+Drop Table Users
+
+CREATE TABLE Users (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  login VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  email VARCHAR(50) UNIQUE NOT NULL,
+  name VARCHAR(50),
+  role VARCHAR(50)
+);
